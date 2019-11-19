@@ -1,3 +1,4 @@
+'''Cáculo de aumento de salário'''
 salario = float(input('Qual é o salário do funcionário? R$'))
 aumento = 15 / 100 * salario
 novo = salario + aumento

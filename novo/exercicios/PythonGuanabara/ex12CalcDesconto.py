@@ -1,3 +1,4 @@
+'''Cálculo de desconto no produto'''
 valor = float(input('Qual é o preço do produto? R$'))
 desc = 5 / 100 * valor
 novo = valor - desc
