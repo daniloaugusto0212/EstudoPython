@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e2cf7f5-22ef-4a1f-97ad-053c67225ee3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/aula04ManipulacaoDeString.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/aula09In.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/aula14TratamentoDeExcessao.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/aula15Listas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/aula16ListaDeLista.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/aula16Listas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python-Udemy/ex01.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,8 +55,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ex21TocandoMusica">
-    <configuration name="ex14" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.aula16Listas">
+    <configuration name="01ManipulacaoDeString" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="novo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -58,11 +64,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Curso-Python3/PythonGuanabara" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python-Udemy" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Curso-Python3/PythonGuanabara/ex14.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python-Udemy/01ManipulacaoDeString.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -71,7 +77,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ex15" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="aula16Listas" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="novo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -79,11 +85,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Curso-Python3/PythonGuanabara" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python-Udemy" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Curso-Python3/PythonGuanabara/ex15.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python-Udemy/aula16Listas.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -157,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.aula16Listas" />
+        <item itemvalue="Python.01ManipulacaoDeString" />
         <item itemvalue="Python.ex21TocandoMusica" />
         <item itemvalue="Python.ex17" />
         <item itemvalue="Python.ex16" />
-        <item itemvalue="Python.ex15" />
-        <item itemvalue="Python.ex14" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +182,14 @@
       <option name="presentableId" value="Default" />
       <updated>1573508033635</updated>
     </task>
+    <task id="LOCAL-00001" summary="Adicionando">
+      <created>1574204532721</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574204532721</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,5 +204,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adicionando" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionando" />
   </component>
 </project>
