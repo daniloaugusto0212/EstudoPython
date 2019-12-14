@@ -1,19 +1,26 @@
-import  pymysql.cursors
+import pymysql.cursors
 
 conexao = pymysql.connect(
     host='localhost',
     user='root',
-    password='681015',
+    password='',
     db='interacaopython',
     charset='utf8mb4',
-    cursorclass=pymysql.cursors.DictCursor
+    cursorclass = pymysql.cursors.DictCursor
 
 )
+x = input('Digite seu nome: ')
+y = input('Digite o endereço: ')
 
-x = 'create table teste1(nome varchar(10));'
+
 
 with conexao.cursor() as cursor:
-    cursor.execute(x)
+    cursor.execute('insert into cadastros(nome, endereco) values("{}", "{}")'.format(x, y))
+    conexao.commit()
 
-print('saiu')
+print('fim')
+
+
+
+
 
