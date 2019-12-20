@@ -9,16 +9,15 @@ conexao = pymysql.connect(
     cursorclass = pymysql.cursors.DictCursor
 
 )
-x = input('Digite seu nome: ')
-y = input('Digite o endereço: ')
-
 
 
 with conexao.cursor() as cursor:
-    cursor.execute('insert into cadastros(nome, endereco) values("{}", "{}")'.format(x, y))
-    conexao.commit()
+    cursor.execute('select * from cadastros')
+    resultado = cursor.fetchall()
 
-print('fim')
+for dado in resultado:
+    print('Nome: ', dado['nome'], '\n', 'Endereço: ', dado['endereco'])
+
 
 
 
