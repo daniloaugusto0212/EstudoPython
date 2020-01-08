@@ -180,6 +180,105 @@ def gerarEstatistica():
             plt.ylabel('Quantidade vendida em Reais')
             plt.xlabel('Produtos')
             plt.show()
+        if decisao3 == 2:
+            grupoUnico = []
+            grupoUnico.clear()
+
+            try:
+                with conexao.cursor() as cursor:
+                    cursor.execute('select * from produtos')
+                    grupo = cursor.fetchall()
+            except:
+                print('Erro na consulta.')
+
+            try:
+                with conexao.cursor() as cursor:
+                    cursor.execute('select * from estatiticaVendido')
+                    vendidoGrupo = cursor.fetchall()
+            except:
+                print('Erro na consulta')
+            for i in grupo:
+                grupoUnico.append(i['nome'])
+
+            grupoUnico = sorted(set(grupoUnico))
+            qntFinal = []
+            qntFinal.clear()
+
+            for h in range(0, len(grupoUnico)):
+                qntUnitaria = 0
+                for i in vendidoGrupo:
+                    if grupoUnico[h] == i['nome']:
+                        qntUnitaria += 1
+                qntFinal.append(qntUnitaria)
+            
+            plt.plot(grupoUnico, qntFinal)
+            plt.ylabel('Quantidade unitária vendida')
+            plt.xlabel('Produtos')
+            plt.show()
+
+    elif estado == 2:
+        decisao3 = int(input('[1] PESQUISAR POR VALOR\n[2] PESQUISAR POR QUANTIDADE\n'))
+        if decisao3 == 1:
+
+            for i in produtos:
+                nomeProdutos.append(i['grupo'])
+
+            valores = []
+            valores.clear()
+
+            for h in range(0, len(nomeProdutos)):
+                somaValor = -1
+                for i in vendido:
+                    if i['grupo'] == nomeProdutos[h]:
+                        somaValor += i['preco']
+                if somaValor == -1:
+                    valores.append(0)
+                elif somaValor > 0:
+                    valores.append(somaValor + 1)
+
+            plt.plot(nomeProdutos, valores)
+            plt.ylabel('Quantidade vendida em Reais')
+            plt.xlabel('Produtos')
+            plt.show()
+
+        if decisao3 == 2:
+            grupoUnico = []
+            grupoUnico.clear()
+
+            try:
+                with conexao.cursor() as cursor:
+                    cursor.execute('select * from produtos')
+                    grupo = cursor.fetchall()
+            except:
+                print('Erro na consulta.')
+
+            try:
+                with conexao.cursor() as cursor:
+                    cursor.execute('select * from estatiticaVendido')
+                    vendidoGrupo = cursor.fetchall()
+            except:
+                print('Erro na consulta')
+            for i in grupo:
+                grupoUnico.append(i['grupo'])
+
+            grupoUnico = sorted(set(grupoUnico))
+            qntFinal = []
+            qntFinal.clear()
+
+            for h in range(0, len(grupoUnico)):
+                qntUnitaria = 0
+                for i in vendidoGrupo:
+                    if grupoUnico[h] == i['grupo']:
+                        qntUnitaria += 1
+                qntFinal.append(qntUnitaria)
+            
+            plt.plot(grupoUnico, qntFinal)
+            plt.ylabel('Quantidade unitária vendida')
+            plt.xlabel('Produtos')
+            plt.show()
+
+            
+
 
 
 while not autentico:
