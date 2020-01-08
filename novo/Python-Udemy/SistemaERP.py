@@ -53,7 +53,7 @@ def logarCadastrar():
                     conexao.commit()
                 print("Usuário cadastrado com sucesso!")
             except:
-                print('Erro ao inserir os dados!')
+                print('Error ao inserir os dados!')
     return autenticado, usuarioMaster
 
 def cadastrarProdutos():
