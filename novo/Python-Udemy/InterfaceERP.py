@@ -5,10 +5,58 @@ from tkinter import messagebox, ttk
 
 class AdminJanela():
 
+    def CadastrarProduto(self):
+        self.cadastrar = Tk()
+        self.cadastrar.title('Cadastro de produtos')
+        self.cadastrar['bg'] = '#524f4f'
+
+        Label(self.cadastrar, text='Cadastre os produtos', bg='#524f4f', fg='white').grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Nome', bg='#524f4f', fg='white').grid(row=1, column=0, columnspan=1, padx=5, pady=5)
+        self.nome = Entry(self.cadastrar)
+        self.nome.grid(row=1, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Ingredientes', bg='#524f4f', fg='white').grid(row=2, column=0, columnspan=1, padx=5, pady=5)
+        self.ingredientes = Entry(self.cadastrar)
+        self.ingredientes.grid(row=2, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Grupo', bg='#524f4f', fg='white').grid(row=3, column=0, columnspan=1, padx=5, pady=5)
+        self.grupo = Entry(self.cadastrar)
+        self.grupo.grid(row=3, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='preço', bg='#524f4f', fg='white').grid(row=4, column=0, columnspan=1, padx=5, pady=5)
+        self.preco = Entry(self.cadastrar)
+        self.preco.grid(row=4, column=1, columnspan=2, padx=5, pady=5)
+
+        Button(self.cadastrar, text='Cadastrar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=5, column=0, padx=5, pady=5)
+        Button(self.cadastrar, text='Excluir', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=5, column=1, padx=5, pady=5)
+        Button(self.cadastrar, text='Atualizar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=6, column=0, padx=5, pady=5)
+        Button(self.cadastrar, text='Limpar produtos', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=6, column=1, padx=5, pady=5)
+
+        self.tree = ttk.Treeview(self.cadastrar, selectmode='browse', column=('column1', 'column2', 'column3', 'column4'), show='headings')
+
+        self.tree.column('column1', width=200, minwidth=500, stretch=NO)
+        self.tree.heading('#1', text='Nome')
+
+        self.tree.column('column2', width=400, minwidth=500, stretch=NO)
+        self.tree.heading('#2', text='Ingredientes')
+
+        self.tree.column('column3', width=100, minwidth=500, stretch=NO)
+        self.tree.heading('#3', text='Grupo')
+
+        self.tree.column('column4', width=60, minwidth=500, stretch=NO)
+        self.tree.heading('#4', text='Preço')
+
+        self.tree.grid(row=0, column=4, padx=10, pady=10, columnspan=3, rowspan=6)
+
+        self.cadastrar.mainloop()
+
     def __init__(self):
         self.root = Tk()
         self.root.title('ADMIN')
-        self.root.geometry('500x500')
+
+        Button(self.root, text='Pedidos', width=20, bg='#2E4682').grid(row=0, column=0, padx=10, pady=10)
+        Button(self.root, text='Cadastros', width=20, bg='#485A88', command=self.CadastrarProduto).grid(row=1, column=0, padx=10, pady=10)
 
         self.root.mainloop()
 
