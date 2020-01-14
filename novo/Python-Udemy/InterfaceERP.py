@@ -28,7 +28,7 @@ class AdminJanela():
         self.preco = Entry(self.cadastrar)
         self.preco.grid(row=4, column=1, columnspan=2, padx=5, pady=5)
 
-        Button(self.cadastrar, text='Cadastrar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=5, column=0, padx=5, pady=5)
+        Button(self.cadastrar, text='Cadastrar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f', command=self.CadastrarProdutoBackEnd).grid(row=5, column=0, padx=5, pady=5)
         Button(self.cadastrar, text='Excluir', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=5, column=1, padx=5, pady=5)
         Button(self.cadastrar, text='Atualizar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=6, column=0, padx=5, pady=5)
         Button(self.cadastrar, text='Limpar produtos', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=6, column=1, padx=5, pady=5)
@@ -49,6 +49,8 @@ class AdminJanela():
 
         self.tree.grid(row=0, column=4, padx=10, pady=10, columnspan=3, rowspan=6)
 
+        self.MostrarProdutosBackEnd()
+
         self.cadastrar.mainloop()
 
     def __init__(self):
@@ -60,6 +62,69 @@ class AdminJanela():
 
         self.root.mainloop()
 
+
+    def MostrarProdutosBackEnd(self):
+    
+        try:
+            conexao = pymysql.connect(
+                host='localhost',
+                user='root',
+                password='681015',
+                db='erp',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro ao conectar ao banco de dados.')
+
+        try:
+            with conexao.cursor() as cursor:
+                cursor.execute('select * from produtos')
+                resultados = cursor.fetchall()
+        except:
+            print('Erro ao fazer a consulta.')
+
+        self.tree.delete(*self.tree.get_children())
+
+        linhaV = []
+
+        for linha in resultados:
+            linhaV.append(linha['nome'])
+            linhaV.append(linha['ingredientes'])
+            linhaV.append(linha['grupo'])
+            linhaV.append(linha['preco'])
+
+            self.tree.insert("", END, values=linhaV, iid=linha['id'], tag='1')
+
+            linhaV.clear()
+    def CadastrarProdutoBackEnd(self):
+        nome = self.nome.get()
+        ingredientes = self.ingredientes.get()
+        grupo = self.grupo.get()
+        preco = self.preco.get()
+
+        try:
+            conexao = pymysql.connect(
+                host='localhost',
+                user='root',
+                password='681015',
+                db='erp',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro ao conectar ao banco de dados.')
+
+        try:
+            with conexao.cursor() as cursor:
+                cursor.execute('insert into produtos(nome, ingredientes, grupo, preco) values (%s, %s, %s, %s)', (nome, ingredientes, grupo, preco))
+                conexao.commit()
+        except:
+            print('Erro ao cadastrar.')
+
+        self.MostrarProdutosBackEnd()
 
 class JanelaLogin():
 
