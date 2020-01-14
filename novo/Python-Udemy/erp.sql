@@ -22,6 +22,8 @@ grupo varchar(100),
 preco float
  
 );
+
+insert into produtos(nome, ingredientes, grupo, preco) values ('Pizza Calabresa', 'Calabresa, Cebola','Pizzas', 35);
  
 drop table pedidos;
  
