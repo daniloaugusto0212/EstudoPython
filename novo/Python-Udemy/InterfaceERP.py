@@ -29,9 +29,9 @@ class AdminJanela():
         self.preco.grid(row=4, column=1, columnspan=2, padx=5, pady=5)
 
         Button(self.cadastrar, text='Cadastrar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f', command=self.CadastrarProdutoBackEnd).grid(row=5, column=0, padx=5, pady=5)
-        Button(self.cadastrar, text='Excluir', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=5, column=1, padx=5, pady=5)
-        Button(self.cadastrar, text='Atualizar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=6, column=0, padx=5, pady=5)
-        Button(self.cadastrar, text='Limpar produtos', width=15, bg='gray', relief='flat', highlightbackground='#524f4f').grid(row=6, column=1, padx=5, pady=5)
+        Button(self.cadastrar, text='Excluir', width=15, bg='gray', relief='flat', highlightbackground='#524f4f', command=self.RemoverCadastrosBackEnd).grid(row=5, column=1, padx=5, pady=5)
+        Button(self.cadastrar, text='Atualizar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f', command=self.CadastrarProdutoBackEnd).grid(row=6, column=0, padx=5, pady=5)
+        Button(self.cadastrar, text='Limpar produtos', width=15, bg='gray', relief='flat', highlightbackground='#524f4f', command=self.LimparCadastrosBackEnd).grid(row=6, column=1, padx=5, pady=5)
 
         self.tree = ttk.Treeview(self.cadastrar, selectmode='browse', column=('column1', 'column2', 'column3', 'column4'), show='headings')
 
@@ -53,15 +53,81 @@ class AdminJanela():
 
         self.cadastrar.mainloop()
 
+    def CadastrarPedido(self):
+        self.cadastrar = Tk()
+        self.cadastrar.title('Pedidos em aberto')
+        self.cadastrar['bg'] = '#524f4f'
+
+        Label(self.cadastrar, text='Cadastre os pedidos', bg='#524f4f', fg='white').grid(row=0, column=0, columnspan=4,
+                                                                                          padx=5, pady=5)
+
+        Label(self.cadastrar, text='Nome', bg='#524f4f', fg='white').grid(row=1, column=0, columnspan=1, padx=5, pady=5)
+        self.nome = Entry(self.cadastrar)
+        self.nome.grid(row=1, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Ingredientes', bg='#524f4f', fg='white').grid(row=2, column=0, columnspan=1, padx=5,
+                                                                                  pady=5)
+        self.ingredientes = Entry(self.cadastrar)
+        self.ingredientes.grid(row=2, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Grupo', bg='#524f4f', fg='white').grid(row=3, column=0, columnspan=1, padx=5,
+                                                                           pady=5)
+        self.grupo = Entry(self.cadastrar)
+        self.grupo.grid(row=3, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Local de Entrega', bg='#524f4f', fg='white').grid(row=4, column=0, columnspan=1, padx=5,
+                                                                           pady=5)
+        self.localEntrega = Entry(self.cadastrar)
+        self.localEntrega.grid(row=4, column=1, columnspan=2, padx=5, pady=5)
+
+        Label(self.cadastrar, text='Observações', bg='#524f4f', fg='white').grid(row=5, column=0, columnspan=1, padx=5,
+                                                                                  pady=5)
+        self.observacoes = Entry(self.cadastrar)
+        self.observacoes.grid(row=5, column=1, columnspan=2, padx=5, pady=5)
+
+        Button(self.cadastrar, text='Cadastrar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f',
+               command=self.CadastrarPedidoBackEnd).grid(row=6, column=0, padx=5, pady=5)
+        Button(self.cadastrar, text='Entregue', width=15, bg='gray', relief='flat', highlightbackground='#524f4f', command=self.PedidoEntregueBackEnd
+               ).grid(row=6, column=1, padx=5, pady=5)
+        Button(self.cadastrar, text='Atualizar', width=15, bg='gray', relief='flat', highlightbackground='#524f4f'
+               ).grid(row=7, column=0, padx=5, pady=5)
+        Button(self.cadastrar, text='Limpar todos pedidos', width=15, bg='gray', relief='flat',
+               highlightbackground='#524f4f', command=self.LimparPedidosBackEnd).grid(row=7, column=1, padx=5, pady=5)
+
+        self.tree = ttk.Treeview(self.cadastrar, selectmode='browse',
+                                 column=('column1', 'column2', 'column3', 'column4', 'column5'), show='headings')
+
+        self.tree.column('column1', width=200, minwidth=500, stretch=NO)
+        self.tree.heading('#1', text='Nome')
+
+        self.tree.column('column2', width=400, minwidth=500, stretch=NO)
+        self.tree.heading('#2', text='Ingredientes')
+
+        self.tree.column('column3', width=100, minwidth=500, stretch=NO)
+        self.tree.heading('#3', text='Grupo')
+
+        self.tree.column('column4', width=60, minwidth=500, stretch=NO)
+        self.tree.heading('#4', text='Local de Entrega')
+
+        self.tree.column('column5', width=60, minwidth=800, stretch=NO)
+        self.tree.heading('#5', text='Observações')
+
+        self.tree.grid(row=0, column=5, padx=10, pady=10, columnspan=3, rowspan=6)
+
+        self.MostrarPedidosBackEnd()
+
+        self.cadastrar.mainloop()
+
+
     def __init__(self):
         self.root = Tk()
         self.root.title('ADMIN')
 
-        Button(self.root, text='Pedidos', width=20, bg='#2E4682').grid(row=0, column=0, padx=10, pady=10)
+        Button(self.root, text='Pedidos', width=20, bg='#2E4682', command=self.CadastrarPedido).grid(row=0, column=0, padx=10, pady=10)
         Button(self.root, text='Cadastros', width=20, bg='#485A88', command=self.CadastrarProduto).grid(row=1, column=0, padx=10, pady=10)
+        Button(self.root, text='Estatísticas', width=20, bg='#021F3D', fg='white').grid(row=2, column=0, padx=10, pady=10)
 
         self.root.mainloop()
-
 
     def MostrarProdutosBackEnd(self):
     
@@ -98,6 +164,7 @@ class AdminJanela():
             self.tree.insert("", END, values=linhaV, iid=linha['id'], tag='1')
 
             linhaV.clear()
+
     def CadastrarProdutoBackEnd(self):
         nome = self.nome.get()
         ingredientes = self.ingredientes.get()
@@ -126,6 +193,179 @@ class AdminJanela():
 
         self.MostrarProdutosBackEnd()
 
+    def RemoverCadastrosBackEnd(self):
+        idDeletar = int(self.tree.selection()[0])
+
+        try:
+            conexao = pymysql.connect(
+
+
+                host='localhost',
+                user='root',
+                password='681015',
+                db='erp',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro ao conectar ao banco de dados.')
+
+        try:
+            with conexao.cursor() as cursor:
+                cursor.execute('delete from produtos where id = {}'.format(idDeletar))
+                conexao.commit()
+        except:
+            print('Erro ao fazer a consulta.')
+
+        self.MostrarProdutosBackEnd()
+
+    def LimparCadastrosBackEnd(self):
+        if messagebox.askokcancel('Limpar dados CUIDADO!!!', 'DESEJA EXCLUIR TODOS OS DADOS DA TABELA? NÂO PODERÁ RECUPERAR.'):
+
+            try:
+                conexao = pymysql.connect(
+
+                    host='localhost',
+                    user='root',
+                    password='681015',
+                    db='erp',
+                    charset='utf8mb4',
+                    cursorclass=pymysql.cursors.DictCursor
+
+                )
+            except:
+                print('Erro ao conectar ao banco de dados.')
+
+            try:
+                with conexao.cursor() as cursor:
+                    cursor.execute('trancate table produtos:')
+                    conexao.commit()
+            except:
+                print('Erro ao fazer a consulta.')
+
+            self.MostrarProdutosBackEnd()
+
+    def CadastrarPedidoBackEnd(self):
+        nome = self.nome.get()
+        ingredientes = self.ingredientes.get()
+        grupo = self.grupo.get()
+        localEntrega = self.localEntrega.get()
+        observacoes = self.observacoes.get()
+
+        try:
+            conexao = pymysql.connect(
+                host='localhost',
+                user='root',
+                password='681015',
+                db='erp',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro ao conectar ao banco de dados.')
+
+        try:
+            with conexao.cursor() as cursor:
+                cursor.execute('insert into pedidos(nome, ingredientes, grupo, localEntrega, observacoes) values (%s, %s, %s, %s, %s)',
+                               (nome, ingredientes, grupo, localEntrega, observacoes))
+                conexao.commit()
+        except:
+            print('Erro ao cadastrar pedido.')
+
+        self.MostrarPedidosBackEnd()
+
+    def MostrarPedidosBackEnd(self):
+
+        try:
+            conexao = pymysql.connect(
+                host='localhost',
+                user='root',
+                password='681015',
+                db='erp',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro ao conectar ao banco de dados.')
+
+        try:
+            with conexao.cursor() as cursor:
+                cursor.execute('select * from pedidos')
+                resultados = cursor.fetchall()
+        except:
+            print('Erro ao fazer a consulta.')
+
+        self.tree.delete(*self.tree.get_children())
+
+        linhaV = []
+
+        for linha in resultados:
+            linhaV.append(linha['nome'])
+            linhaV.append(linha['ingredientes'])
+            linhaV.append(linha['grupo'])
+            linhaV.append(linha['localEntrega'])
+            linhaV.append(linha['observacoes'])
+
+            self.tree.insert("", END, values=linhaV, iid=linha['id'], tag='1')
+
+            linhaV.clear()
+
+    def PedidoEntregueBackEnd(self):
+        idDeletar = int(self.tree.selection()[0])
+
+        try:
+            conexao = pymysql.connect(
+                host='localhost',
+                user='root',
+                password='681015',
+                db='erp',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro ao conectar ao banco de dados.')
+
+        try:
+            with conexao.cursor() as cursor:
+                cursor.execute('delete from pedidos where id = {}'.format(idDeletar))
+                conexao.commit()
+        except:
+            print('Erro ao fazer a consulta.')
+
+        self.MostrarPedidosBackEnd()
+
+    def LimparPedidosBackEnd(self):
+        if messagebox.askokcancel('Limpar pedidos. CUIDADO!!!', 'DESEJA EXCLUIR TODOS OS PEDIDOS DA TABELA? NÂO PODERÁ RECUPERAR.'):
+
+            try:
+                conexao = pymysql.connect(
+
+                    host='localhost',
+                    user='root',
+                    password='681015',
+                    db='erp',
+                    charset='utf8mb4',
+                    cursorclass=pymysql.cursors.DictCursor
+
+                )
+            except:
+                print('Erro ao conectar ao banco de dados.')
+
+            try:
+                with conexao.cursor() as cursor:
+                    cursor.execute('trancate table pedidos:')
+                    conexao.commit()
+            except:
+                print('Erro ao fazer a consulta.')
+
+            self.MostrarPedidosBackEnd()
+
+
+
 class JanelaLogin():
 
     def VerificaLogin(self):
@@ -134,8 +374,6 @@ class JanelaLogin():
 
         try:
             conexao = pymysql.connect(
-
-
                 host='localhost',
                 user='root',
                 password='681015',
@@ -155,7 +393,7 @@ class JanelaLogin():
                 cursor.execute('select * from cadastros')
                 resultados = cursor.fetchall()
         except:
-            print('Erro ao fazer a consulta.')
+            print('Erro ao abrir a janela.')
 
         for linha in resultados:
             if usuario == linha['nome'] and senha == linha['senha']:
@@ -224,8 +462,6 @@ class JanelaLogin():
     def UpdateBackEnd(self):
         try:
             conexao = pymysql.connect(
-
-
                 host='localhost',
                 user='root',
                 password='681015',
