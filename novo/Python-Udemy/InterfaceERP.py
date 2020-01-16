@@ -101,16 +101,16 @@ class AdminJanela():
         self.tree.column('column1', width=200, minwidth=500, stretch=NO)
         self.tree.heading('#1', text='Nome')
 
-        self.tree.column('column2', width=400, minwidth=500, stretch=NO)
+        self.tree.column('column2', width=300, minwidth=500, stretch=NO)
         self.tree.heading('#2', text='Ingredientes')
 
         self.tree.column('column3', width=100, minwidth=500, stretch=NO)
         self.tree.heading('#3', text='Grupo')
 
-        self.tree.column('column4', width=60, minwidth=500, stretch=NO)
+        self.tree.column('column4', width=300, minwidth=500, stretch=NO)
         self.tree.heading('#4', text='Local de Entrega')
 
-        self.tree.column('column5', width=60, minwidth=800, stretch=NO)
+        self.tree.column('column5', width=100, minwidth=800, stretch=NO)
         self.tree.heading('#5', text='Observações')
 
         self.tree.grid(row=0, column=5, padx=10, pady=10, columnspan=3, rowspan=6)
@@ -191,7 +191,7 @@ class AdminJanela():
             plt.xlabel('Produtos')
             plt.show()
 
-    def PesquisaQuantidade(self):
+    '''def PesquisaQuantidade(self):
         grupoUnico = []
         grupoUnico.clear()
 
@@ -275,7 +275,8 @@ class AdminJanela():
         plt.plot(nomeProdutos, valores)
         plt.ylabel('Quantidade vendida em Reais')
         plt.xlabel('Produtos')
-        plt.show()
+        plt.show()'''
+    #Faltando finalizar a parte de Estatísticas.
 
     def MostrarProdutosBackEnd(self):
     
@@ -512,159 +513,6 @@ class AdminJanela():
 
             self.MostrarPedidosBackEnd()
 
-    def gerarEstatistica(self):
-        nomeProdutos = []
-        nomeProdutos.clear()
-
-        try:
-            conexao = pymysql.connect(
-                host='localhost',
-                user='root',
-                password='681015',
-                db='erp',
-                charset='utf8mb4',
-                cursorclass=pymysql.cursors.DictCursor
-
-            )
-        except:
-            print('Erro ao conectar ao banco de dados.')
-
-        try:
-            with conexao.cursor() as cursor:
-                cursor.execute('select * from produtos')
-                produtos = cursor.fetchall()
-        except:
-            print('Erro ao consultar o banco de dados. ')
-
-        try:
-            with conexao.cursor() as cursor:
-                cursor.execute('select * from estatiticaVendido')
-                vendido = cursor.fetchall()
-        except:
-            print('Error ao consultar o banco de dados. ')
-
-        estado = int(input('[0] SAIR\n[1] PESQUISAR POR NOME\n[2] PESQUISAR POR GRUPO\n'))
-
-        if estado == 1:
-            decisao3 = int(input('[1] PESQUISAR POR VALOR\n[2] PESQUISAR POR QUANTIDADE\n'))
-            if decisao3 == 1:
-
-                for i in produtos:
-                    nomeProdutos.append(i['nome'])
-
-                valores = []
-                valores.clear()
-
-                for h in range(0, len(nomeProdutos)):
-                    somaValor = -1
-                    for i in vendido:
-                        if i['nome'] == nomeProdutos[h]:
-                            somaValor += i['preco']
-                    if somaValor == -1:
-                        valores.append(0)
-                    elif somaValor > 0:
-                        valores.append(somaValor + 1)
-
-                plt.plot(nomeProdutos, valores)
-                plt.ylabel('Quantidade vendida em Reais')
-                plt.xlabel('Produtos')
-                plt.show()
-            if decisao3 == 2:
-                grupoUnico = []
-                grupoUnico.clear()
-
-                try:
-                    with conexao.cursor() as cursor:
-                        cursor.execute('select * from produtos')
-                        grupo = cursor.fetchall()
-                except:
-                    print('Erro na consulta.')
-
-                try:
-                    with conexao.cursor() as cursor:
-                        cursor.execute('select * from estatiticaVendido')
-                        vendidoGrupo = cursor.fetchall()
-                except:
-                    print('Erro na consulta')
-                for i in grupo:
-                    grupoUnico.append(i['nome'])
-
-                grupoUnico = sorted(set(grupoUnico))
-                qntFinal = []
-                qntFinal.clear()
-
-                for h in range(0, len(grupoUnico)):
-                    qntUnitaria = 0
-                    for i in vendidoGrupo:
-                        if grupoUnico[h] == i['nome']:
-                            qntUnitaria += 1
-                    qntFinal.append(qntUnitaria)
-
-                plt.plot(grupoUnico, qntFinal)
-                plt.ylabel('Quantidade unitária vendida')
-                plt.xlabel('Produtos')
-                plt.show()
-
-        elif estado == 2:
-            decisao3 = int(input('[1] PESQUISAR POR VALOR\n[2] PESQUISAR POR QUANTIDADE\n'))
-            if decisao3 == 1:
-
-                for i in produtos:
-                    nomeProdutos.append(i['grupo'])
-
-                valores = []
-                valores.clear()
-
-                for h in range(0, len(nomeProdutos)):
-                    somaValor = -1
-                    for i in vendido:
-                        if i['grupo'] == nomeProdutos[h]:
-                            somaValor += i['preco']
-                    if somaValor == -1:
-                        valores.append(0)
-                    elif somaValor > 0:
-                        valores.append(somaValor + 1)
-
-                plt.plot(nomeProdutos, valores)
-                plt.ylabel('Quantidade vendida em Reais')
-                plt.xlabel('Produtos')
-                plt.show()
-
-            if decisao3 == 2:
-                grupoUnico = []
-                grupoUnico.clear()
-
-                try:
-                    with conexao.cursor() as cursor:
-                        cursor.execute('select * from produtos')
-                        grupo = cursor.fetchall()
-                except:
-                    print('Erro na consulta.')
-
-                try:
-                    with conexao.cursor() as cursor:
-                        cursor.execute('select * from estatiticaVendido')
-                        vendidoGrupo = cursor.fetchall()
-                except:
-                    print('Erro na consulta')
-                for i in grupo:
-                    grupoUnico.append(i['grupo'])
-
-                grupoUnico = sorted(set(grupoUnico))
-                qntFinal = []
-                qntFinal.clear()
-
-                for h in range(0, len(grupoUnico)):
-                    qntUnitaria = 0
-                    for i in vendidoGrupo:
-                        if grupoUnico[h] == i['grupo']:
-                            qntUnitaria += 1
-                    qntFinal.append(qntUnitaria)
-
-                plt.plot(grupoUnico, qntFinal)
-                plt.ylabel('Quantidade unitária vendida')
-                plt.xlabel('Produtos')
-                plt.show()
 
 
 
