@@ -8,6 +8,8 @@ df.describe()
 
 df.columns
 
+df.shape
+
 
 #ANALISANDO DADOS DE UMAS PLANILHA DE EXCEL
 excel = pd.ExcelFile('Controles Firma 2018.xls')
