@@ -44,10 +44,25 @@ class Interface():
 
         base_teste = gerador_treinamento.flow_from_directory('imagensRede/Teste', target_size=(64, 64), batch_size=32, class_mode='binary')
 
-        self.rede.fit_generator(base_treinamento, steps_per_epoch=20, epochs=3, validaton_data = base_teste, validation_steps = 20)
+        self.rede.fit_generator(base_treinamento, steps_per_epoch=60, epochs=5, validaton_data = base_teste, validation_steps = 20)
     
     def ClassificarImagens(self):
-        pass
+        imagem_teste = image.load_img(self.filename, target_size = (64, 64))
+
+        imagem_teste = image.img_to_array(imagem_teste)
+
+        imagem_teste /= 255
+
+        imagem_teste = np.expand_dims(imagem_teste, axis=0)
+
+        previsao = self.rede.predict(imagem_teste)
+
+        if previsao > 0.5:
+            print('A imagem é uma floresta')
+            Label(self.root, text='A imagem é uma floresta').grid(row=1, column=0)
+        elif previsao < 0.5:
+            print('A imgem é de um deserto')
+            Label(self.root, text='A imgem é de um deserto').grid(row=1, column=0)
     
     def __init__(self):
         self.root = Tk()
