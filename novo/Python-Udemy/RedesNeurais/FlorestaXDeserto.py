@@ -22,7 +22,29 @@ class Interface():
 
     
     def Treinamento(self):
-        pass
+        self.rede = Sequential()
+
+        self.rede.add(Conv2D(64, (3, 3), input_shape=(64, 64, 3), activation='relu'))
+        self.rede.add(BatchNormalization())
+        self.rede.add(MaxPooling2D(pool_size=(2, 2)))
+
+        self.rede.add(Flatten())
+
+        self.rede.add(Dense(units=100, activation='relu'))
+        self.rede.add(Dense(units=100, activation='relu'))
+        self.rede.add(Dense(units=1, activation='sigmoid'))
+
+        self.rede.compiler(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+        gerador_treinamento = ImageDataGenerator(rescale=1. / 255, rotation_range=7, horizontal_flip=True, shear_range=0.2, heght_shift_range=0.07, zoom_range=0.2)
+
+        gerador_teste = ImageDataGenerator(rescale=1. / 255)
+
+        base_treinamento = gerador_treinamento.flow_from_directory('imagensRede/Treinamento', target_size(64, 64), batch_size=32, class_mode='binary')
+
+        base_teste = gerador_treinamento.flow_from_directory('imagensRede/Teste', target_size=(64, 64), batch_size=32, class_mode='binary')
+
+        self.rede.fit_generator(base_treinamento, steps_per_epoch=20, epochs=3, validaton_data = base_teste, validation_steps = 20)
     
     def ClassificarImagens(self):
         pass
