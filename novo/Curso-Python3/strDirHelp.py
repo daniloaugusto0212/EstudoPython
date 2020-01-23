@@ -1,1 +1,0 @@
-linguas = {'br':'portugues', 'eua': 'ingles'}
