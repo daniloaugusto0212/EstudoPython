@@ -1,33 +1,34 @@
-nome, idade, sobrenome = "João", 10, "Silva"
+from usuario import Usuario
 
-print(f'Olá, {nome} {sobrenome}, sua idade é {idade} anos')
+continuar = 1
+lista_usuarios = []
+while continuar != 0:
+    nome = input('Digite o seu nome: ')
+    idade = int(input('Digite sua idade: '))
+    sobrenome = input('Digite seu sobrenome: ')
+    usuario = Usuario(nome, idade, sobrenome)
 
-if idade >= 18:
-    print(f'{nome} é maior de idade')
-else:
-    print(f'{nome} é menor de idade')
+    lista_usuarios.append(usuario)
 
-idade2 = 1
-while idade2 != 0:
-    nome2 = input('Digite o seu nome: ')
-    idade2 = int(input('Digite sua idade: '))
-    sobrenome2 = input('Digite seu sobrenome: ')
-
-    if idade2 == 99:
+    if usuario.idade == 99:
         break
-    if idade2 == 98:
+    if usuario.idade == 98:
         continue
 
-    print(f"Olá, {nome2} {sobrenome2}, sua idade é {idade2} anos")
+    print(f"Olá, {usuario.nome} {usuario.sobrenome}, sua idade é {usuario.idade} anos")
 
-    media_idades = (idade + idade2) / 2
-    print(f"A média das idades é: {media_idades}")
-
-    if idade2 <= 17:
-        print(f"{nome2} é adolescente.")
-    elif idade2 >= 18 and idade2 <= 50:
-        print(f"{nome2} é adulto")
+    if usuario.idade <= 17:
+        print(f"{usuario.nome} é adolescente.")
+    elif usuario.idade >= 18 and idade <= 50:
+        print(f"{usuario.nome} é adulto")
     else:
-        print(f"{nome2} é idoso.")
+        print(f"{usuario.nome} é idoso.")
+
+    continuar = int(input("Deseja continuar cadastrando? 0 - Sair 1 - Continuar "))
 else:
+    print("Lista de usuários:\n")
+
+    for x in lista_usuarios:
+        print(f"Nome completo: {x.nome} {x.sobrenome} - Idade: {x.idade}\n")
+
     print('O loop entrou no else')
