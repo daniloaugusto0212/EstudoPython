@@ -13,11 +13,13 @@ class Carro():
     def ligar(self):
         if self.is_ligado == False:
             self.is_ligado = True
+            print("O carro foi ligado!")
         else:
             print("O carro já está ligado!")
 
     def desligar(self):
         if self.is_ligado:
             self.is_ligado = False
+            print("O carro foi desligado!")
         else:
             print("O carro já está desligado!")
