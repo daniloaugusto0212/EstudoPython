@@ -1,14 +1,13 @@
 import carro
 
 uno_vermelho = carro.Carro("Vermelho", 4, "Flex", 1.0)
-#help(uno_vermelho.abastecer) #Imprime o conteúdo da DocString
+help(uno_vermelho.abastecer) #Imprime o conteúdo da DocString
 uno_vermelho.ligar()
-#help(carro.Carro)
+help(carro.Carro)
 uno_vermelho.abastecer(10)
 uno_vermelho.abastecer(20)
-
 print(f'A quantidade de combustível do carro é {uno_vermelho.qtd_combustivel} litros\n')
-
+#del uno_vermelho
 
 uno_preto= carro.Carro("Preto", 2, "Gasolina", 1.4)
 uno_preto.ligar()
