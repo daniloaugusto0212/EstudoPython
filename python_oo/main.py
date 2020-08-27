@@ -1,6 +1,6 @@
-import carro
+import carro, moto
 
-uno_vermelho = carro.Carro("Vermelho", 4, "Flex", 1.0)
+uno_vermelho = carro.Carro("Vermelho", "Flex", 1.0, 4)
 help(uno_vermelho.abastecer) #Imprime o conteúdo da DocString
 uno_vermelho.ligar()
 help(carro.Carro)
@@ -9,9 +9,7 @@ uno_vermelho.abastecer(20)
 print(f'A quantidade de combustível do carro é {uno_vermelho.qtd_combustivel} litros\n')
 #del uno_vermelho
 
-uno_preto= carro.Carro("Preto", 2, "Gasolina", 1.4)
-uno_preto.ligar()
-
-print(f'\nA quantidade de combustível do Uno Preto é {uno_preto.qtd_combustivel} litros')
-uno_preto.acelerar(120)
-print(f'\nO carro está na velocidade de {uno_preto.velocidade} Km/h')
+moto_preta = moto.Moto("Vermelha", "Gasolina", 125, 2)
+moto_preta.abastecer(30)
+moto_preta.ligar()
+print(moto_preta.is_ligado)
