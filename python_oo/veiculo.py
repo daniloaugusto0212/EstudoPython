@@ -1,9 +1,11 @@
+import abc
+
 class Veiculo():
     """"
     Essa é a classe Veículo. Esta classe é utilizada para instanciar novos veiculos em nosso programa
     """
     def __init__(self, cor, tipo_combustivel, potencia):
-        self.__cor = cor
+        self._cor = cor
         self.__tipo_combustivel = tipo_combustivel
         self.__potencia = potencia
         self._qtd_combustivel = 0
@@ -13,13 +15,14 @@ class Veiculo():
     def __del__(self):
         print('O objeto foi removido da memória.')
 
+    @abc.abstractclassmethod
     def pintar(self, cor):
         print("Médoto pintar chamado.")
-        self.__cor = cor
+        self._cor = cor
 
     @property
     def cor(self):
-        return self.__cor
+        return self._cor
 
     def abastecer(self, qtd_combustivel):
         """"O método abastecer recebe como parâmetro a quantidade de combustível e incrementa no atributo qtd_combustível"""
