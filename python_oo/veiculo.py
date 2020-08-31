@@ -16,7 +16,10 @@ class Veiculo():
     def pintar(self, cor):
         print("Médoto pintar chamado.")
         self.__cor = cor
-        print(f'Carro pintado para a cor {self.__cor}')
+
+    @property
+    def cor(self):
+        return self.__cor
 
     def abastecer(self, qtd_combustivel):
         """"O método abastecer recebe como parâmetro a quantidade de combustível e incrementa no atributo qtd_combustível"""

@@ -9,6 +9,8 @@ uno_vermelho.abastecer(20)
 uno_vermelho.ligar()
 uno_vermelho.acelerar(50)
 uno_vermelho.pintar("Azul")
+print(uno_vermelho.cor)
+
 
 print(f'A quantidade de combustível do carro é ')
 
