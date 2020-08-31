@@ -7,4 +7,4 @@ class Carro(veiculo.Veiculo):
 
     def abastecer(self, qtd_combustivel):
         print("O método foi chamado a partir da classe carro")
-        self.qtd_combustivel+=qtd_combustivel
+        self._qtd_combustivel+= qtd_combustivel
