@@ -1,6 +1,6 @@
 import abc
 
-class Veiculo():
+class Veiculo(abc.ABC):
     """"
     Essa é a classe Veículo. Esta classe é utilizada para instanciar novos veiculos em nosso programa
     """

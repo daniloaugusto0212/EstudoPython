@@ -16,5 +16,5 @@ print(f'A quantidade de combustível do carro é ')
 
 
 moto_preta = moto.Moto("Vermelha", "Gasolina", 125, 2)
-
+moto_preta.abastecer(10)
 moto_preta.ligar()
