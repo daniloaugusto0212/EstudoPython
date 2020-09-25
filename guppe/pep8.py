@@ -76,6 +76,7 @@ antes de constantes ou variáveis globais
 [6] - Espaços em expressões e instruções
 
 
+
 [7] - Termine sempre a instrução com uma nova linha
 """
 
