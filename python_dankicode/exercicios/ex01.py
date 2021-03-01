@@ -3,6 +3,7 @@
 
 
 print("Vamos descobrir a aŕea de um retângulo...\n")
-base = input("Digite a Base: \n")
-altura = input("Digite a Altura: \n")
+base = float(input("Digite a Base: \n"))
+altura = float(input("Digite a Altura: \n"))
 area = base * altura
+print(f"A área do triângulo é {area}")
